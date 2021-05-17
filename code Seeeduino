@@ -1,1 +1,57 @@
+#include "CURL.h"
+#define trigPin 10
+#define echoPin 13
+ 
+float duration, distance,SOUNDSPEED;
+int TIME=0;                                 ////////////////////////////////////////put time to know how long the garage has been closed
+void setup() {                                      ///////////////////////////////////////// set up will only run once
+  Serial.begin (9600);
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
 
+}
+ 
+void loop() {                                        /////////////////////////////////   void loop will run repeatedly
+                                                      // Write a pulse to the HC-SR04 Trigger Pin
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);                       ////////////////////////////////// pulse of the trigPin will last 10 us , which  will transmit the pulse to the garage
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+                                                     // Measure the response from the HC-SR04 Echo Pin
+ 
+  duration = pulseIn(echoPin, HIGH);                //////////////////////////////////////Duration is in us
+                                                   ////////////////////////////////////echo will time out after 38 ms if no signal coming back to it. If the garage detected, the HIGH of echoPin will go LOW.
+                                                   ////////////////////////////////////so we will calculate the total time that the ECHO pulse go high to calculate our distance.
+                                                    ////////////////////////////////////////////////ULTRASONIC signal travels at the speed of sound.
+  SOUNDSPEED=343 /pow(10,4);                         ////////////////////  speed of sound is traveling as 343 m/s and will convert it into cm/ us because we want distance is in cm
+  distance = (duration / 2) * SOUNDSPEED;             // Determine distance from duration. Distance will be in cm
+  TIME=TIME+1;                                        //////////////////////////////// updating our time in s
+                                                     // Send results to Serial Monitor
+ 
+  if (distance >10) {                                 //////////////////////////////////// if distance is >10cm . We will assume in this case is garage opens and send the notification through curling
+    Serial.println();
+     Serial.println();
+      Serial.println();
+     Serial.println("Garage OPENS !!!");
+     Serial.println("Sending notification...\nCurling is in process...\n");
+     runCurl();
+     delay(3000);
+     Serial.println("PROCESSING...............");
+     delay(3000);
+     Serial.println("PROCESSING...............");
+     delay(3000);
+     Serial.println("PROCESSING...............");
+     delay(3000);
+      Serial.println("DONE !!!!");
+    TIME=0;/////////////////////////////reset the time
+    delay(3000);
+     }
+  
+  else {                                             ////////////////////////////////////// all other cases the garage closes, we will output the time that it has been closed 
+    Serial.print("Garage CLOSES for ");
+    Serial.print(TIME);
+    Serial.println(" seconds");
+    delay(1000);
+  }                                                   ////////////////////////////////////// go back to the loop
+}
