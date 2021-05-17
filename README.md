@@ -19,9 +19,9 @@ https://www.youtube.com/watch?v=fRfZ0XPjT0o
 ![image](https://user-images.githubusercontent.com/36321686/118550507-60754000-b722-11eb-81c4-30e8982765d7.png)
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 ## Components
-### 1)Seeeduino Cloud (compatible with Arduino Yun) ![image](https://user-images.githubusercontent.com/36321686/118551823-c0b8b180-b723-11eb-9e72-f25f36305104.png)
+### 1) Seeeduino Cloud (compatible with Arduino Yun) ![image](https://user-images.githubusercontent.com/36321686/118551823-c0b8b180-b723-11eb-9e72-f25f36305104.png)
 <br/><br/><br/><br/><br/><br/><br/>
-### 2)Range sensor HC-SR04![image](https://user-images.githubusercontent.com/36321686/118552088-1725f000-b724-11eb-931a-e38ea1742e7d.png)
+### 2) Range sensor HC-SR04![image](https://user-images.githubusercontent.com/36321686/118552088-1725f000-b724-11eb-931a-e38ea1742e7d.png)
  
 
 
